@@ -1,0 +1,179 @@
+
+<html>
+
+<head>
+
+<title>My Page</title> 
+	
+	
+	<script src="jquery.js"></script>
+
+	<style type="text/css">
+				
+		.page{
+		/*
+				width:100%;
+				margin:auto;                    
+				
+				height:100%;	// 100% fills the screen height
+				*/
+		}
+
+		.header{
+				//background-color:orange;
+				//height:60px;	// auto should match the content
+		}
+		
+		.panes{
+			width:auto;
+			//background-color:gray;
+			//height:100%;
+		}
+		
+		
+		
+		
+		
+			
+	</style>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	<script>
+		function searchTwitter(query) {
+			$.ajax({
+				url: 'http://search.twitter.com/search.json?' + jQuery.param(query),
+				dataType: 'jsonp',
+				success: function(data) {
+					var tweets = $('#tweets');
+					tweets.html('');
+					for (res in data['results']) {
+						//tweets.append('<div>' + data['results'][res]['from_user'] + ' wrote: <p>' + data['results'][res]['text'] + '</p></div><br />');
+					}
+					
+				var randomnumber=Math.floor(Math.random()*31);
+				tweets.html(data['results'][randomnumber]['text']);
+
+				}
+			});
+		}
+		</script>
+
+		<script>
+		$(document).ready(function() {
+			var params = {
+					q: $('#userName').val(),
+					rpp: 2000
+				};
+				
+				//alert(jQuery.param(params));
+				searchTwitter(params);
+		}
+		
+		$("#userName").click(function() {
+			alert("Handler for .click() called.");
+		});
+		
+		);
+		
+		
+		
+	</script>
+	
+</head>
+
+<body data-role = "page" >
+
+	<div class = "page" data-role="content" data-theme = "b">
+	
+		
+	
+		<!-- header -->
+		
+			
+		<!-- day -->
+		<div id = "day" style = " font-size:50; width:100%; text-align:center" >				
+			<script type="text/javascript">	
+				var dt = new Date();
+				var y  = dt.getDate();
+				document.getElementById("day").innerHTML = y;
+			</script>
+		</div>
+		
+		<!-- month and year -->
+		<div id = "monthAndYear" style = "width:100%; text-align:center">
+			<div id = "month" style = "width:100%;text-align:center"">
+				<script type="text/javascript">	
+					var dt = new Date();
+					var y  = dt.getMonth();
+					var month=new Array();
+						month[0]="January";
+						month[1]="February";
+						month[2]="March";
+						month[3]="April";
+						month[4]="May";
+						month[5]="June";
+						month[6]="July";
+						month[7]="August";
+						month[8]="September";
+						month[9]="October";
+						month[10]="November";
+						month[11]="December";
+						var n = month[dt.getMonth()];
+					document.getElementById("month").innerHTML = n;
+				</script>
+			</div>
+
+			<div id = "year" style = "width:100%; text-align:center">
+				<script type="text/javascript">	
+					var dt = new Date();
+					var y  = dt.getFullYear();
+					document.getElementById("year").innerHTML = y;
+				</script>
+			</div>	
+
+			<div id = "dayOfWeek" style = "width:100%;">
+			
+				<script type="text/javascript">	
+					var dayNames = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+					
+					var dt = new Date();
+					
+					var y  = dayNames[dt.getDay()];
+					document.getElementById("dayOfWeek").innerHTML = y;
+				</script>
+			</div>
+			
+		</div>
+		
+
+		<!-- quote content -->
+		<div id = "quoteContent" style = " height:100%; text-alignment:center" >
+			
+			<div style = "text-align:center" data-theme = "a">
+				<input text-align:center" id="userName" type="text" value="famoushemes" />
+				<input id="submit" type="button" value="Search" data-theme = "a"/>
+			</div>
+			
+			<div id="tweets" style="padding: 20px;">
+			</div>
+			<script>
+			/*
+				q = new Object();
+				q.text = "today i saw a fish";
+				q.date = "10/11/12";
+				q.pic = "mike"
+				document.write(q.text + "\r\n");
+				document.write(q.date + "\r\n");
+				document.write(q.pic + "\r\n");
+			*/
+
+			</script>
+		<div>
+        
+        
+   </div>
+	  
+</body>
+
+</html>
